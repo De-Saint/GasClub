@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>
+      Product Details
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <!-- <div class="hangmore2 neg-margintop">
+    <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+  </div> -->
+
+  <div class="tilenote bold largetext threequarterwide">
+    <div class="">{{product.name}}</div>
+  </div>
+  <div class="imagecontainer">
+    <div class="product-image" *ngIf="product.product_categoryid === '7'">
+      <img src="assets/img/Regulator With Meter.jpg">
+    </div>
+    <div class="product-image" *ngIf="product.product_categoryid === '6'">
+      <img src="assets/img/Burner.jpg">
+    </div>
+    <div class="product-image" *ngIf="product.product_categoryid === '5'">
+      <img src="assets/img/Lighter Empty.jpg">
+    </div>
+    <div class="product-image" *ngIf="product.product_categoryid === '4'">
+      <img src="assets/img/clip.jpg">
+    </div>
+    <div class="product-image" *ngIf="product.product_categoryid === '3'">
+      <img src="assets/img/Hose.jpg">
+    </div>
+    <div class="product-image" *ngIf="product.product_categoryid === '2'">
+      <img src="assets/img/refill.jpeg">
+    </div>
+    <div class="product-image" *ngIf="product.product_categoryid === '1'">
+      <img src="assets/img/emtpy.jpeg">
+    </div>
+    <div class="quantityContainer">
+      <form [formGroup]="quantityform">
+        <div class="center"><button ion-button small clear (click)="IncreaseQuantity()"><i class="fa fa-plus-square center largetext"></i></button></div>
+        <div class="center">
+          <ion-input type="number" min="1" formControlName="quantity" value="1" class="primaryborder center wide textcenter white "
+            readonly></ion-input>
+        </div>
+        <div class="center"> <button ion-button small clear (click)="DecreaseQuantity()"><i class="fa fa-minus-square center largetext"></i></button></div>
+      </form>
+    </div>
+  </div>
+  <div class="parts bold slightly-largetext half-margin">
+    <div class="mediumtext greytext">Price:</div>
+    <div class="">{{product.price | currency: 'NGN': '1.2-2'}}</div>
+  </div>
+  <div class="parts bold slightly-largetext half-margin" *ngFor="let prop of props">
+    <div class="mediumtext greytext">{{prop.PropName}}</div>
+    <div class="">{{prop.PropValue}}</div>
+  </div>
+  <div class="parts bold slightly-largetext half-margin">
+    <div class="mediumtext greytext">Total Price:</div>
+    <div class="">{{totalprice | currency: 'NGN': '1.2-2'}}</div>
+  </div>
+  <div class="margintop">
+    <button ion-button block (click)="AddToCart()"><i class="fa fa-shopping-cart marginright slightly-largetext"></i> Add To Cart</button>
+  </div>
+
+</ion-content>

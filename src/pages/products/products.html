@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Products</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addProduct()"><ion-icon name="add-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionCancel)="onCancel($event)" [showCancelButton]="true" (ionClear)="onClear($event)"
+    (ionInput)="searchProduct()" class="wide"></ion-searchbar>
+  <ion-list>
+      <ion-item *ngFor="let product of products" class="marginleft paddingright" >
+          <ion-avatar item-start *ngIf="product.product_categoryid === '7'">
+              <img src="assets/img/Regulator With Meter.jpg">
+            </ion-avatar> 
+        <ion-avatar item-start *ngIf="product.product_categoryid === '6'">
+            <img src="assets/img/Burner.jpg">
+          </ion-avatar>
+          <ion-avatar item-start *ngIf="product.product_categoryid === '5'">
+            <img src="assets/img/Lighter Empty.jpg">
+          </ion-avatar>
+          <ion-avatar item-start *ngIf="product.product_categoryid === '4'">
+            <img src="assets/img/clip.jpg">
+          </ion-avatar>
+          <ion-avatar item-start *ngIf="product.product_categoryid === '3'">
+            <img src="assets/img/Hose.jpg">
+          </ion-avatar>
+          <ion-avatar item-start *ngIf="product.product_categoryid === '2'">
+              <img src="assets/img/refill.jpeg">
+          </ion-avatar>
+          <ion-avatar item-start *ngIf="product.product_categoryid === '1'">
+              <img src="assets/img/emtpy.jpeg">
+            </ion-avatar>
+          <h2 (click)="GotoProductDetails(product.id)">{{product.name}}</h2>
+          <p class="mini-margintop">{{product.properties}}</p>
+          <ion-note item-end class="blacktext">{{product.price}}</ion-note>
+          <button ion-button clear (click)="DeleteProduct(product.id)" class="del"><i class="fa fa-times-circle redtext slightly-largetext"></i></button>
+        </ion-item>
+  </ion-list>
+  <div class="marginleft paddingleft marginright paddingright marginbottom margintop" *ngIf="noprod === 'noprod'">
+     You don't have any product yet
+    </div>
+</ion-content>

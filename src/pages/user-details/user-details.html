@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>{{user?.firstname}} Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card class="radius cardheight">
+    <ion-card-content>
+      <div class="overflow">
+        <ion-item-group id="profile" class="">
+          <div text-justify class="normaltext lineup half-padding">
+            <div class="profiles">
+              <div class="desc normaltext" ion-text color="primary">FirstName </div>
+              <div class="slightly-largetext bold">{{user?.firstname}}</div>
+            </div>
+            <div class="profiles">
+              <div class="desc normaltext" ion-text color="primary">LastName</div>
+              <div class="slightly-largetext bold">{{user?.lastname}}</div>
+            </div>
+            <div class="profiles">
+              <div class="desc normaltext" ion-text color="primary">Phone</div>
+              <div class="slightly-largetext bold">{{user?.phone}}</div>
+            </div>
+            <div class="profiles">
+              <div class="desc normaltext" ion-text color="primary">Delivery Location</div>
+              <div class="slightly-largetext bold">{{user?.location}}</div>
+            </div>
+            <div class="profiles">
+              <div class="desc normaltext" ion-text color="primary">Date Joined</div>
+              <div class="slightly-largetext bold">{{user?.date_created}}</div>
+            </div>
+            <div class="profiles">
+              <div class="desc normaltext" ion-text color="primary">Address</div>
+              <div class="slightly-largetext bold wrap">{{user?.address}}</div>
+            </div>
+          </div>
+        </ion-item-group>
+
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

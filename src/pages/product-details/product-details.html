@@ -1,0 +1,109 @@
+<ion-content padding class="padding top marginright borderprimary radius">
+  <div class="hangmore2 neg-margintop">
+    <button ion-button icon-only (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </div>
+  <div id="viewproduct" class="">
+    <div class="tilenote bold largetext">
+      <div class="">{{product.name}}</div>
+    </div>
+    <div class="imagecontainer">
+      <div class="product-image" *ngIf="product.product_categoryid === '7'">
+        <img src="assets/img/Regulator With Meter.jpg">
+      </div>
+      <div class="product-image" *ngIf="product.product_categoryid === '6'">
+        <img src="assets/img/Burner.jpg">
+      </div>
+      <div class="product-image" *ngIf="product.product_categoryid === '5'">
+        <img src="assets/img/Lighter Empty.jpg">
+      </div>
+      <div class="product-image" *ngIf="product.product_categoryid === '4'">
+        <img src="assets/img/clip.jpg">
+      </div>
+      <div class="product-image" *ngIf="product.product_categoryid === '3'">
+        <img src="assets/img/Hose.jpg">
+      </div>
+      <div class="product-image" *ngIf="product.product_categoryid === '2'">
+        <img src="assets/img/refill.jpeg">
+      </div>
+      <div class="product-image" *ngIf="product.product_categoryid === '1'">
+        <img src="assets/img/emtpy.jpeg">
+      </div>
+    </div>
+
+    <div class="parts bold slightly-largetext half-margin">
+      <div class="mediumtext greytext">Price:</div>
+      <div class="">{{product.price | currency: 'NGN': '1.2-2'}}</div>
+    </div>
+
+    <div class="parts bold slightly-largetext half-margin" *ngFor="let prop of props">
+      <div class="mediumtext greytext">{{prop.PropName}}</div>
+      <div class="">{{prop.PropValue}}</div>
+    </div>
+    <div class="margintop">
+      <button ion-button block (click)="EditProduct()">
+        <i class="fa fa-pencil-square marginright slightly-largetext"></i>Edit Product</button>
+    </div>
+  </div>
+
+
+
+
+ <div class="hide" id="editproduct">
+    <form [formGroup]="slideOneForm">
+      <ion-item>
+        <ion-label stacked>Product Name</ion-label>
+        <ion-input formControlName="productname" class="borderbottomprimary" value="{{product.name}}" type="text" class="mediumtext"
+          [class.invalid]="!slideOneForm.controls.productname.valid && (slideOneForm.controls.productname.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <div *ngIf="!slideOneForm.controls.productname.valid  && (slideOneForm.controls.productname.dirty || submitAttempt)">
+        <p class="redtext textleft">Please product name input is emtpy.</p>
+      </div>
+
+      <ion-item>
+        <ion-label stacked>Product Price</ion-label>
+        <ion-input formControlName="productprice" class="borderbottomprimary" value="{{product.price}}" type="text" class="mediumtext"
+          [class.invalid]="!slideOneForm.controls.productprice.valid && (slideOneForm.controls.productprice.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <div *ngIf="!slideOneForm.controls.productprice.valid  && (slideOneForm.controls.productprice.dirty || submitAttempt)">
+        <p class="redtext textleft">Please product price input is emtpy.</p>
+      </div>
+
+
+      <div class="" id="moreproperties">
+        <div class="parts">
+          <div class="parts halfwide">
+            <ion-item class="">
+              <ion-label stacked>Property Name</ion-label>
+              <ion-input formControlName="productpropertyname" placeholder="Name" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideOneForm.controls.productpropertyname.valid && (slideOneForm.controls.productpropertyname.dirty || submitAttempt)"></ion-input>
+            </ion-item>
+          </div>
+          <div class="parts halfwide">
+            <ion-item class="">
+              <ion-label stacked>Property Value</ion-label>
+              <ion-input formControlName="productpropertyvalue" placeholder="Value" type="text" class="mediumtext borderbottomprimary"
+                [class.invalid]="!slideOneForm.controls.productpropertyvalue.valid && (slideOneForm.controls.productpropertyvalue.dirty || submitAttempt)"></ion-input>
+            </ion-item>
+          </div>
+          <div style="clear: both"></div>
+        </div>
+        <div class="half-margintop left">
+          <button ion-button (click)="AddProperty()">Add Property</button>
+        </div>
+        <div class="half-margintop right">
+          <button ion-button (click)="RemoveProperty()">Remove Properties</button>
+        </div>
+        <div style="clear: both"></div>
+        <div id="properties" class="half-margintop normaltext borderprimary half-padding" contenteditable="true"> </div>
+      </div>
+
+      
+      <div style="clear: both"></div>
+      <div class="margintop">
+        <button ion-button block type="submit" [disabled]="!slideOneForm.valid" (click)="UpdateProduct()">
+          <i class="fa fa-save marginright slightly-largetext"></i>Update Product</button>
+      </div>
+    </form>
+  </div> 
+</ion-content>

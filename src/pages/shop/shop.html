@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>
+      GasClub Shop
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="toggleSearch()">
+          <i class="fa fa-fw fa-search half-marginright slightly-largetext"></i>
+        </button>
+      <button ion-button icon-only (click)="Cart()" *ngIf="cartcount !== ''">
+          <i class="fa fa-fw fa-cart-arrow-down half-marginright slightly-largetext"></i> <ion-badge id="notifications-badge" color="danger">{{cartcount}}</ion-badge>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar no-border>
+      <div class="borderbottom lightborder relative marginbottom">
+          <div class="parts center padding-horizontal half-padding-vertical whitetext orangebtn radius tit">Discount Point: {{discountpointcount}} KG</div>
+        </div>
+  </ion-toolbar>
+  <ion-toolbar no-border class="neg-half-margintop">
+      <ion-segment [(ngModel)]="SHOP">
+      <ion-segment-button value="refill" (click)="getRefill()">
+        GAS REFILL
+      </ion-segment-button>
+      <ion-segment-button value="accessory" (click)="getAccessories()">
+        BUY ACCESSORY
+      </ion-segment-button>
+    </ion-segment>
+    
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-searchbar [(ngModel)]="searchTerm" *ngIf="toggled" id="searchtext" (ionCancel)="onCancel($event)" [showCancelButton]="true" (ionClear)="onClear($event)"
+    (ionInput)="Search()" placeholder="Search with Product Name / Properties"></ion-searchbar>
+  <div [ngSwitch]="SHOP">
+    <ion-list *ngSwitchCase="'refill'">
+      <div class="product-tile" *ngFor="let product of products" (click)="GotoProductPreview(product.id)">
+        <div *ngIf="product.product_categoryid === '2'">
+          <div class="product-image" *ngIf="product.product_categoryid === '7'">
+            <img src="assets/img/Regulator With Meter.jpg">
+          </div>
+          <div class="product-image" *ngIf="product.product_categoryid === '6'">
+            <img src="assets/img/Burner.jpg">
+          </div>
+          <div class="product-image" *ngIf="product.product_categoryid === '5'">
+            <img src="assets/img/Lighter Empty.jpg">
+          </div>
+          <div class="product-image" *ngIf="product.product_categoryid === '4'">
+            <img src="assets/img/clip.jpg">
+          </div>
+          <div class="product-image" *ngIf="product.product_categoryid === '3'">
+            <img src="assets/img/Hose.jpg">
+          </div>
+          <div class="product-image" *ngIf="product.product_categoryid === '2'">
+              <img src="assets/img/refill.jpeg">
+          </div>
+          <div class="product-image" *ngIf="product.product_categoryid === '1'">
+              <img src="assets/img/emtpy.jpeg">
+          </div>
+          <div class="product-name half-marginbottom bold">{{product.name}}</div>
+          <div class="product-property">{{product.properties}}</div>
+          <div class="product-price redtext">{{product.price | currency: 'NGN': '1.2-2'}}</div>
+        </div>
+      </div>
+    </ion-list>
+    <ion-list *ngSwitchCase="'accessory'">
+      <div class="product-tile" *ngFor="let product of products" (click)="GotoProductPreview(product.id)">
+        <div class="product-image" *ngIf="product.product_categoryid === '7'">
+          <img src="assets/img/Regulator With Meter.jpg">
+        </div>
+        <div class="product-image" *ngIf="product.product_categoryid === '6'">
+          <img src="assets/img/Burner.jpg">
+        </div>
+        <div class="product-image" *ngIf="product.product_categoryid === '5'">
+          <img src="assets/img/Lighter Empty.jpg">
+        </div>
+        <div class="product-image" *ngIf="product.product_categoryid === '4'">
+          <img src="assets/img/clip.jpg">
+        </div>
+        <div class="product-image" *ngIf="product.product_categoryid === '3'">
+          <img src="assets/img/Hose.jpg">
+        </div>
+        <div class="product-image" *ngIf="product.product_categoryid === '2'">
+            <img src="assets/img/refill.jpeg">
+        </div>
+        <div class="product-image" *ngIf="product.product_categoryid === '1'">
+            <img src="assets/img/emtpy.jpeg">
+        </div>
+        <div class="product-name half-marginbottom bold">{{product.name}}</div>
+        <div class="product-property">{{product.properties}}</div>
+        <div class="product-price redtext">{{product.price | currency: 'NGN': '1.2-2'}}</div>
+      </div>
+    </ion-list>
+  </div>
+
+</ion-content>

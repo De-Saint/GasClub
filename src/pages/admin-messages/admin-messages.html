@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Messages</ion-title>
+    </ion-navbar>
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="msg">
+          <ion-segment-button value="inbox" (click)="getInboxMsg()">
+            <i class="fa fa-envelope half-marginright slightly-largetext bold" aria-hidden="true"></i>Inbox
+          </ion-segment-button>
+          <ion-segment-button value="sent" (click)="getSentMsg()">
+            <i class="fa fa-paper-plane half-marginright slightly-largetext bold" aria-hidden="true"></i>Sent
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+  </ion-header>
+
+
+
+<ion-content>
+    <div [ngSwitch]="msg" class="msgcontainer">
+        <ion-list *ngSwitchCase="'inbox'">
+          <ion-searchbar [(ngModel)]="inboxsearchTerm" (ionCancel)="onInboxCancel($event)" [showCancelButton]="true" (ionClear)="onInboxClear($event)"
+            (ionInput)="searchInboxMessages()" class="wide"></ion-searchbar>
+          <ion-list>
+            <button ion-item *ngFor="let inboxmsg of inboxmsgs" (click)="goToInboxDetails(inboxmsg.id)"> 
+
+              <div class="" *ngIf="inboxmsg.is_read == 1">
+                <div class="desc left">{{inboxmsg.subject}}</div>
+                 <div class="desc right"> {{inboxmsg.sendername}}</div>
+                 <div style="clear: both;"></div>
+                <div class="smalltext mini-margintop ellipsis">  {{inboxmsg.body}} </div>
+             </div>            
+              <div class="unread half-padding" *ngIf="inboxmsg.is_read == 0">
+                <div class="desc left">{{inboxmsg.subject}}</div>
+                 <div class="desc right"> {{inboxmsg.sendername}}</div>
+                 <div style="clear: both;"></div>
+                <div class="smalltext mini-margintop ellipsis">  {{inboxmsg.body}} </div>
+             </div>            
+            </button>
+          </ion-list>
+          <div class="marginleft paddingleft marginright paddingright marginbottom margintop" *ngIf="noinboxmsg === 'noinboxmsg'">
+            No Inbox Messages
+          </div>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'sent'">
+          <ion-searchbar [(ngModel)]="sentsearchTerm" (ionCancel)="onSentCancel($event)" [showCancelButton]="true" (ionClear)="onSentClear($event)"
+            (ionInput)="searchSentMessages()" class="wide"></ion-searchbar>
+
+          <button ion-item *ngFor="let sentmsg of sentmsgs" (click)="goToSentDetails(sentmsg.id)">
+          <div class="">
+                <div class="desc left">{{sentmsg.subject}} </div>
+                 <div class="desc right"> {{sentmsg.recievername}}</div>
+                 <div style="clear: both;"></div>
+                <div class="smalltext mini-margintop ellipsis">  {{sentmsg.body}} </div>
+             </div> 
+        </button>
+          <div class="marginleft paddingleft marginright paddingright marginbottom margintop" *ngIf="nosentmsg === 'nosentmsg'">
+            You have not sent any Messages
+          </div>
+        </ion-list>
+      </div>
+  
+</ion-content>

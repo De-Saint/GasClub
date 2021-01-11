@@ -1,0 +1,163 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Create Your Account</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card class="radius cardheight">
+        <ion-card-content>
+            <ion-slides #signupSlider pager="true" parallax="true" paginationType="progress">
+                <ion-slide>
+                    <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+                    <ion-list no-lines>
+                        <form [formGroup]="slideOneForm">
+                            <ion-item-divider class="margintop" color="primary">Account Details</ion-item-divider>
+
+                            <ion-item class="">
+                                <ion-label stacked>Email</ion-label>
+                                <ion-input [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)" formControlName="email"
+                                    type="email" class="textleft borderbottomprimary"></ion-input>
+                            </ion-item>
+
+                            <ion-item class="">
+                                <ion-label stacked>Phone</ion-label>
+                                <ion-input formControlName="phone" type="text" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.phone.dirty || submitAttempt)"
+                                    required class="textleft borderbottomprimary"></ion-input>
+                            </ion-item>
+                            <div *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
+                                <p class="redtext textleft mediumtext">Please enter a valid Phone Number.</p>
+                            </div>
+
+
+                            <ion-item class="">
+                                <ion-label stacked>Password</ion-label>
+                                <ion-input formControlName="password" class="textleft borderbottomprimary" type="password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
+                            </ion-item>
+                            <div *ngIf="!slideOneForm.controls.password.valid  && (slideOneForm.controls.password.dirty || submitAttempt)">
+                                <p class="redtext textleft mediumtext">Password must be 6 characters long</p>
+                            </div>
+
+                            <ion-item class="">
+                                <ion-label stacked>Confirm Password</ion-label>
+                                <ion-input formControlName="confirmpassword" id="password" class="textleft borderbottomprimary" type="password" [class.invalid]="!slideOneForm.controls.confirmpassword.valid && (slideOneForm.controls.confirmpassword.dirty || submitAttempt)"
+                                    (ngModelChange)="onCheckPassword($event)"></ion-input>
+                            </ion-item>
+                            <div *ngIf="!slideOneForm.controls.password.valid  && (slideOneForm.controls.password.dirty || submitAttempt)">
+                                <p class="redtext textleft mediumtext">Password must be 6 characters long</p>
+                            </div>
+                            <div *ngIf="slideOneForm.controls.confirmpassword.valid">
+                                <p class="bluetext textleft" *ngIf="match === 'Password confirmed'">{{match}}</p>
+                                <p class="redtext textleft" *ngIf="match !== 'Password confirmed'">{{match}}</p>
+                            </div>
+                            <div *ngIf="!slideOneForm.controls.confirmpassword.valid  && (slideOneForm.controls.confirmpassword.dirty || submitAttempt)">
+                                <p class="redtext textleft">Please confirm password</p>
+                            </div>
+                        </form>
+                        <div class="margintop">
+                            <ion-buttons class="center">
+                                <button ion-button (click)="NextOne()">
+                                    <i class="fa fa-arrow-right fa-fw half-marginright"></i>Next</button>
+                            </ion-buttons>
+                        </div>
+                    </ion-list>
+                </ion-slide>
+
+                <ion-slide>
+
+                    <ion-list no-lines>
+                        <form [formGroup]="slideTwoForm">
+                            <ion-item-divider class="margintop" color="primary">Personal Details</ion-item-divider>
+
+                            <ion-item class="">
+                                <ion-label stacked>Firstname</ion-label>
+                                <ion-input formControlName="firstname" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideTwoForm.controls.firstname.valid && (slideTwoForm.controls.firstname.dirty || submitAttempt)"></ion-input>
+                            </ion-item>
+                            <div *ngIf="!slideTwoForm.controls.firstname.valid  && (slideTwoForm.controls.firstname.dirty || submitAttempt)">
+                                <p class="redtext textleft"> Please firstname input is invalid or empty</p>
+                            </div>
+
+                            <ion-item class="">
+                                <ion-label stacked>LastName</ion-label>
+                                <ion-input formControlName="lastname" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideTwoForm.controls.lastname.valid && (slideTwoForm.controls.lastname.dirty || submitAttempt)"></ion-input>
+                            </ion-item>
+                            <div *ngIf="!slideTwoForm.controls.lastname.valid  && (slideTwoForm.controls.lastname.dirty || submitAttempt)">
+                                <p class="redtext textleft">Please lastname input is invalid or emtpy.</p>
+                            </div>
+
+                            <ion-item>
+                                <ion-label stacked>Nearest Area</ion-label>
+                                <ion-select [class.invalid]="!slideTwoForm.controls.location.valid && (slideTwoForm.controls.location.dirty || submitAttempt)"
+                                    formControlName="location" class="myselect" placeholder="Select location" required>
+                                    <ion-option *ngFor="let location of locations" value="{{ location.id }}">{{ location.name}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <div *ngIf="!slideTwoForm.controls.location.valid  && (slideTwoForm.controls.location.dirty || submitAttempt)">
+                                <p class="textleft redtext">Please select Location.</p>
+                            </div>
+
+
+                            <ion-item class="">
+                                <ion-label stacked>Address</ion-label>
+                                <ion-input formControlName="address" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideTwoForm.controls.address.valid && (slideTwoForm.controls.address.dirty || submitAttempt)"></ion-input>
+                            </ion-item>
+                            <div *ngIf="!slideTwoForm.controls.address.valid  && (slideTwoForm.controls.address.dirty || submitAttempt)">
+                                <p class="redtext textleft">Please Address input is invalid or emtpy.</p>
+                            </div>
+                        </form>
+
+                        <div class="margintop">
+                            <ion-buttons class="left">
+                                <button ion-button (click)="BackOne()">
+                                    <i class="fa fa-arrow-left fa-fw half-marginright"></i>Previous</button>
+                            </ion-buttons>
+                            <ion-buttons class="right">
+                                <button ion-button (click)="NextTwo()">
+                                    <i class="fa fa-arrow-right fa-fw half-marginright"></i>Next</button>
+                            </ion-buttons>
+                        </div>
+                    </ion-list>
+                </ion-slide>
+                <ion-slide>
+
+                    <ion-list no-lines>
+                        <form [formGroup]="slideThreeForm">
+                            <ion-item-divider class="margintop" color="primary">Password Recovery</ion-item-divider>
+                            <ion-item>
+                                <ion-label stacked>Select Question</ion-label>
+                                <ion-select [class.invalid]="!slideThreeForm.controls.question.valid && (slideThreeForm.controls.question.dirty || submitAttempt)"
+                                    placeholder="Select Question" interface="action-sheet" formControlName="question" class="myselect">
+                                    <ion-option value="What is your favorite color?">What is your favorite color?</ion-option>
+                                    <ion-option value="What is your favorite fruit?">What is your favorite fruit?</ion-option>
+                                </ion-select>
+                            </ion-item>
+
+                            <ion-item class="">
+                                <ion-label stacked>Answer</ion-label>
+                                <ion-input formControlName="answer" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideThreeForm.controls.answer.valid && (slideThreeForm.controls.answer.dirty || submitAttempt)"></ion-input>
+                            </ion-item>
+                            <div *ngIf="!slideThreeForm.controls.answer.valid  && (slideThreeForm.controls.answer.dirty || submitAttempt)">
+                                <p class="redtext textleft"> Please answer input is empty</p>
+                            </div>
+                        </form>
+                        <div class="margintop">
+                            <ion-buttons class="left">
+                                <button ion-button (click)="BackTwo()">
+                                    <i class="fa fa-arrow-left fa-fw half-marginright"></i>Previous</button>
+                            </ion-buttons>
+                            <ion-buttons class="right">
+                                <button ion-button full color="primary" (click)="save()">Submit</button>
+                            </ion-buttons>
+                        </div>
+                    </ion-list>
+                </ion-slide>
+
+            </ion-slides>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

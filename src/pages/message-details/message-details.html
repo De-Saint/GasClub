@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>{{message.subject}}</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card class="radius cardheight">
+    <ion-card-content>
+
+      <div class="tilenote bold">
+        <div class="">{{message.subject}}</div>
+      </div>
+      <div class="tilenote">
+        {{message.body}}
+        <p hidden="true">
+          {{message.id}}
+        </p>
+      </div>
+      <div class="tilenote half-margintop">
+        <div class="left">
+          <div class="desc"><i class="fa fa-user fa-fw slightly-largetext mini-marginright"></i>{{message.sendername}}</div>
+
+        </div>
+        <div class="right">
+          <div class="desc"><i class="fa fa-calendar fa-fw mini-marginright"></i> {{message.date}}</div>
+        </div>
+      </div>
+      <ion-fab bottom right #fab2>
+        <button ion-fab mini color="danger" (click)="deleteMessage()"><i class=" fa fa-trash fa-fw whitetext slightly-largetext" ></i><ion-label>Delete Message</ion-label> </button>
+      </ion-fab>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

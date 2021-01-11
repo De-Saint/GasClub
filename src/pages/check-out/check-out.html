@@ -1,0 +1,64 @@
+<ion-content padding class="padding margintop marginright borderprimary radius">
+    <div class="hangmore2 neg-margintop">
+      <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+    </div>
+    <form [formGroup]="PlaceOrderForm">
+        <ion-item>
+            <ion-label stacked>Select New Nearest Area</ion-label>
+            <ion-select [class.invalid]="!PlaceOrderForm.controls.location.valid && (PlaceOrderForm.controls.location.dirty || submitAttempt)"
+                formControlName="location"  class="myselect" (ngModelChange)="onLocationSelect($event)" placeholder="Select location"
+                required>
+                <ion-option *ngFor="let location of locations" value="{{ location.id }}">{{ location.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <div class="" id="deliveryadd">
+      <ion-item>
+        <ion-label stacked>Delivery Address</ion-label>
+        <ion-input type="text" formControlName="deliveryaddress" value="" class="borderbottomprimary center wide textcenter white txt-small">
+      </ion-input>
+       </ion-item>
+      </div> 
+    </form>
+  <ion-item-group>
+    <ion-item-divider color="primary" class="margintop" text-center>CheckOut Details</ion-item-divider>
+    <ion-item>
+      <ion-label>Delivery Location</ion-label>
+      <ion-badge item-right class="newColor half-padding"> {{location?.name}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Delivery Fees</ion-label>
+      <ion-badge item-right class="newColor half-padding">{{location?.fees}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cart Amount</ion-label>
+      <ion-badge item-right class="newColor half-padding">{{cartamount}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Discount Point</ion-label>
+      <ion-badge item-right class="blacktext half-padding">{{discountpointcount}}kg</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Amount</ion-label>
+      <ion-badge item-right class="newColor half-padding" id="totalamount">{{totalamount | currency: 'NGN': '1.2-2'}}</ion-badge>
+    </ion-item>
+    <ion-item>
+      <ion-label>Discounted Amount</ion-label>
+      <ion-badge item-right class="newColor half-padding" id="totalamount">{{discountedamount | currency: 'NGN': '1.2-2'}}</ion-badge>
+    </ion-item>
+    <div class="half-margintop half-marginbottom">
+      <hr class="bordertop">
+    </div>
+    <ion-item>
+      <ion-label>Grand Total</ion-label>
+      <ion-badge item-right class="newColor half-padding" id="grandtotal">{{grandtotal | currency: 'NGN': '1.2-2'}}</ion-badge>
+    </ion-item>
+   </ion-item-group>
+  
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar no-border>
+      <div class="mini-margintop">
+        <button ion-button block (click)="PlaceOrder()"><i class="fa fa-shopping-cart marginright slightly-largetext"></i> Place Order</button>
+      </div>
+    </ion-toolbar>
+  </ion-footer>

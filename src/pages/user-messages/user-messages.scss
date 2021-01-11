@@ -1,0 +1,24 @@
+page-user-messages {
+
+}
+.unread{
+    background-color: skyblue;
+}
+.fab {
+    contain: layout;
+}
+
+button[ion-fab] {
+    overflow: visible;
+    position: relative;
+    ion-label {
+        position: absolute;
+        top: -8px;
+        right: 40px;
+        color: #fff;
+        background-color: #000;
+        line-height: 24px;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+}

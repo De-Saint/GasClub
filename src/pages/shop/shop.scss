@@ -1,0 +1,56 @@
+.ios, .md{
+    page-shop {
+        
+    .product-tile {
+        display: inline-block;
+        width: 49%;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        margin: 0;
+        padding: 15px;
+      }
+      
+      .product-tile:nth-child(even) {
+        width: 50%;
+        border-right: none;
+      }
+      
+      .product-property {
+          margin-bottom: .5em;
+      }
+      
+      .product-image{
+          padding: 1em 0;
+      }
+      .product-image img{
+          max-height: 150px;
+      }
+      #notification-button {            
+        position: relative;
+        width: 42px;
+        top:1px;
+        right: 1px;
+        overflow: visible!important;
+        }   
+        .relative{
+            position: relative !important;
+        }
+        
+        .tit {
+            position: absolute;
+            top: -1em;
+            left: 25%;
+        }
+    
+        #notifications-badge {
+            background-color: red;
+            position: absolute;
+            top: -3px;
+            right: 0.4em;
+            border-radius: 100%;
+        }
+    
+    }
+   
+}
+

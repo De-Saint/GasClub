@@ -1,0 +1,29 @@
+<ion-content no-bounce class="splashImage">
+    <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="true" paginationType="bullets">
+        <ion-slide>
+            <div class="largemargintop marginbottom">
+                <img class="radius welcomeimage center" src="assets/img/icon.png" class="slide-image">
+            </div>
+            <h2 class="slide-title">
+                <b>GasClub</b>
+                <hr class="halfwide bold"/>
+            </h2>
+            <p class="whitetext margintop">
+                The No. 1 Cooking Gas Distribution App
+            </p>
+        </ion-slide>
+
+        <ion-slide>
+            <div class="largemargintop marginbottom">
+                <img class="radius welcomeimage center" src="assets/img/icon.png" class="slide-image">
+            </div>
+            <p class="whitetext margintop">We offer convenience, quality assurance and premium service</p>
+            <p class="whitetext margintop">Register today, build points and get discount on every refill</p>
+            <div class="placebtn">
+                <button ion-button round outline large (click)="getStarted()" class="whitetext whiteborder">
+                    Get Started
+                </button>
+            </div>
+        </ion-slide>
+    </ion-slides>
+</ion-content>

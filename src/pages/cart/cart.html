@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>
+      Cart Page
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="EmtpyCart()">
+         <i class="fa fa-trash largetext"></i>
+            </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="margintop">
+  <div class="borderbottom lightborder relative double-marginbottom">
+    <div class="parts center padding-horizontal half-padding-vertical whitetext orangebtn radius tit">Number of Item(s): {{cart.product_count}}</div>
+  </div>
+  <ion-list>
+    <div class="list-item product" *ngFor="let cartdetail of cartdetails; let i=index">
+      <div class="list-image">
+        <ion-avatar item-start *ngIf="cartdetail.product_categoryid === '7'">
+          <img src="assets/img/Regulator With Meter.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="cartdetail.product_categoryid === '6'">
+          <img src="assets/img/Burner.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="cartdetail.product_categoryid === '5'">
+          <img src="assets/img/Lighter Empty.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="cartdetail.product_categoryid === '4'">
+          <img src="assets/img/clip.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="cartdetail.product_categoryid === '3'">
+          <img src="assets/img/Hose.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="cartdetail.product_categoryid === '2'">
+          <img src="assets/img/refill.jpeg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="cartdetail.product_categoryid === '1'">
+          <img src="assets/img/emtpy.jpeg">
+        </ion-avatar>
+      </div>
+
+      <div class="parts midiwide">
+        <div class="bold" (click)="GotoProductPreview(cartdetail.id)">{{cartdetail.name}}</div>
+        <div class="mini-margintop">{{cartdetail.properties}}</div>
+        <div class="margintop product-amount" id="newamount{{i}}">{{cartdetail.Amount}}</div>
+        <div class="margintop product-id hide">{{cartdetail.id}}</div>
+      </div>
+      <div class="quantityContainer">
+        <form [formGroup]="quantityform">
+          <div class="center"><button ion-button small clear (click)="IncreaseQuantity(i)" class="btn-small"><i class="fa fa-plus-square center largetext"></i></button></div>
+          <div class="center">
+            <ion-input type="number" min="1" formControlName="quantity" value="{{getMapQuantity(i)}}" class="primaryborder center wide textcenter white txt-small product-quantity"
+              readonly></ion-input>
+          </div>
+          <div class="center"> <button ion-button small clear (click)="DecreaseQuantity(i)" class="btn-small"><i class="fa fa-minus-square center largetext"></i></button></div>
+        </form>
+      </div>
+      <button ion-button clear (click)="DeleteItemFromCart(cartdetail.id, cart.id)" class="del"><i class="fa fa-times-circle redtext slightly-largetext"></i></button>
+
+    </div>
+  </ion-list>
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar no-border>
+    <div class="">
+      <div class="left padding">
+        <div class="normaltext bold">
+          Total Amount:
+        </div>
+      </div>
+      <div class="right padding">
+        <div class="slightly-largetext bold" id="totalamount">
+          {{cart.TotalAmount}}
+        </div>
+      </div>
+    </div>
+<div style="clear:both"></div>
+    <div class="left" id="">
+      <button ion-button  (click)="GotoShop()"> <i class="fa fa-fw fa-shopping-basket half-marginright"></i>Continue Shopping</button>
+    </div>
+    <div class="right" id="">
+      <button ion-button  (click)="CheckOut(cart.id)"><i class="fa fa-fw fa-shopping-bag half-marginright"></i>Checkout</button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,42 @@
+page-cart {
+  .tit {
+    position: absolute;
+    top: 0;
+    left: 10%;
+  }
+  .list-item {
+    position: relative;
+    width: 100%;
+    padding: 1em 0; // background-color: #eee;
+    border-bottom: 1px solid #ddd;
+  }
+  .list-image {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+  }
+  .list-image img {
+    height: 50px;
+    width: 50px;
+  }
+  .quantityContainer {
+    position: absolute;
+    right: 0;
+    width: 30px !important;
+    top: .7em;
+    background-color: #fff !important;
+  }
+  .txt-small input {
+    margin: 5px !important;
+    font-size: .8em !important;
+  }
+  .btn-small {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .del {
+    position: absolute;
+    left: -20px;
+    top: 30%;
+  }
+}

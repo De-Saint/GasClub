@@ -1,0 +1,49 @@
+
+
+
+<ion-content padding class="padding margintop marginright borderprimary radius">
+    <div class="hangmore2 neg-margintop">
+        <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+      </div> 
+   <div class="" id="UserMessage">
+      <form [formGroup]="slideOneForm" class="margintop">
+          <div class="normaltext textleft fontname mini-margintop">Select Category</div>
+          <ion-item class="borderprimary mini-margintop">
+              <ion-select [class.invalid]="!slideOneForm.controls.subject.valid && (slideOneForm.controls.subject.dirty || submitAttempt)"
+                  placeholder="Select Category" interface="action-sheet" formControlName="subject" class="myselect">
+                  <ion-option value="Complaint">Complaint</ion-option>
+                  <ion-option value="Inquiry">Inquiry</ion-option>
+              </ion-select>
+          </ion-item>
+
+          <div class="normaltext textleft fontname mini-margintop">Message</div>
+          <div id="messagebody" contenteditable="true" class="borderprimary commentcontent wrap radius white normaltext half-marginleft half-marginright padding margintop selectable whiteborder"
+           data-text="Type message here"></div>
+                   
+  
+          <div class="margintop">
+              <button ion-button block (click)="Send()">Send Message</button>
+            </div>
+      </form>
+   </div>
+   <div class="hide" id="AdminMessage">
+        <form [formGroup]="slideOneForm" class="margintop">
+            <div class="mediumtext textleft fontname mini-margintop">Select Category</div>
+            <ion-item class="borderprimary mini-margintop">
+                <ion-select [class.invalid]="!slideOneForm.controls.subject.valid && (slideOneForm.controls.subject.dirty || submitAttempt)"
+                    placeholder="Select Category"  interface="action-sheet" formControlName="subject" class="myselect">
+                    <ion-option value="Complaint Response">Complaint Response</ion-option>
+                    <ion-option value="Inquiry Response">Inquiry Response</ion-option>
+                </ion-select>
+            </ion-item>
+            <div class="normaltext textleft fontname mini-margintop">Message</div>
+            <div id="MessageBody" contenteditable="true" class="borderprimary commentcontent wrap radius white normaltext half-marginleft half-marginright padding margintop selectable whiteborder"
+             data-text="Type message here"></div>
+                       
+    
+            <div class="margintop">
+                <button ion-button block (click)="Reply()">Reply</button>
+              </div>
+        </form>
+     </div>
+    </ion-content>

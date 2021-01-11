@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="primary">
+
+    <ion-title>Add New Location</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="" id="newlocation">
+    <form [formGroup]="slideOneForm">
+      <ion-item class="">
+        <ion-label stacked>Location Name</ion-label>
+        <ion-input formControlName="locationname" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideOneForm.controls.locationname.valid && (slideOneForm.controls.locationname.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <div *ngIf="!slideOneForm.controls.locationname.valid  && (slideOneForm.controls.locationname.dirty || submitAttempt)">
+        <p class="redtext textleft">Please location name input is emtpy.</p>
+      </div>
+
+      <ion-item class="">
+          <ion-label stacked>Delivery Fees</ion-label>
+          <ion-input formControlName="deliveryfees" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideOneForm.controls.deliveryfees.valid && (slideOneForm.controls.deliveryfees.dirty || submitAttempt)"></ion-input>
+        </ion-item>
+      <div *ngIf="!slideOneForm.controls.deliveryfees.valid  && (slideOneForm.controls.deliveryfees.dirty || submitAttempt)">
+        <p class="redtext textleft">Please Delivery Fees input is emtpy.</p>
+      </div>
+
+      <div class="margintop">
+        <button ion-button block (click)="AddLocation()">Add Location</button>
+      </div>
+    </form>
+  </div>
+  <div class="hide" id="editlocation">
+    <form [formGroup]="slideOneForm">
+        <ion-item class="">
+            <ion-label stacked>Location Name</ion-label>
+            <ion-input formControlName="locationname" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideOneForm.controls.locationname.valid && (slideOneForm.controls.locationname.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+      <div *ngIf="!slideOneForm.controls.locationname.valid  && (slideOneForm.controls.locationname.dirty || submitAttempt)">
+        <p class="redtext textleft">Please location name input is emtpy.</p>
+      </div>
+
+      <ion-item class="">
+          <ion-label stacked>Delivery Fees</ion-label>
+          <ion-input formControlName="deliveryfees" type="text" class="mediumtext borderbottomprimary" [class.invalid]="!slideOneForm.controls.deliveryfees.valid && (slideOneForm.controls.deliveryfees.dirty || submitAttempt)"></ion-input>
+        </ion-item>
+      <div *ngIf="!slideOneForm.controls.deliveryfees.valid  && (slideOneForm.controls.deliveryfees.dirty || submitAttempt)">
+        <p class="redtext textleft">Please Delivery Fees input is emtpy.</p>
+      </div>
+
+      <div class="margintop">
+        <button ion-button block (click)="UpdateLocation()">Update Location</button>
+      </div>
+    </form>
+  </div>
+</ion-content>

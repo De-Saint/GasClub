@@ -1,0 +1,83 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>My Profile</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+    <div class="overflow">
+      <ion-item-divider class="normaltext marginbottom" color="light">
+        <div class="parts">
+          <i class="fa fa-fw fa-user-circle extralargetext mini-marginright"></i>
+        </div>
+        <div class="parts">
+        You are currently signed in as <br/>
+        <div class="bold"> {{ema}}</div>
+        </div>
+      </ion-item-divider>
+      <ion-item-group id="profile" class="">
+        <div text-justify class="normaltext lineup half-padding">
+          <div class="profiles">
+            <div class="desc normaltext" ion-text color="primary">First Name </div>
+            <div class="slightly-largetext bold">{{fname}}</div>
+          </div>
+          <div class="profiles">
+            <div class="desc normaltext" ion-text color="primary">Last Name</div>
+            <div class="slightly-largetext bold">{{lname}}</div>
+          </div>
+          <div class="profiles">
+            <div class="desc normaltext" ion-text color="primary">Phone</div>
+            <div class="slightly-largetext bold">{{pho}}</div>
+          </div>
+          <div class="profiles">
+            <div class="desc normaltext" ion-text color="primary">Town / Area</div>
+            <div class="slightly-largetext bold">{{location}}</div>
+          </div>
+          <div class="profiles">
+            <div class="desc normaltext" ion-text color="primary">Date Joined</div>
+            <div class="slightly-largetext bold">{{date_created}}</div>
+          </div>
+          <div class="profiles">
+            <div class="desc normaltext" ion-text color="primary">Address</div>
+            <div class="slightly-largetext bold wrap">{{address}}</div>
+          </div>
+        </div>
+        <div class="half-margintop">
+          <button ion-button (click)="EdiInfo()" type="button" class="marginright"><i class="fa fa-pencil fa-fw half-marginright"></i>Edit Info</button>
+        </div>
+      </ion-item-group>
+  
+      <ion-item-group id="editprofile" class="hide">
+        <ion-item-divider class="normaltext" color="primary">Edit Profile Details</ion-item-divider>
+        <div text-justify class="normaltext lineup half-padding">
+          <form #UpdateForm="ngForm">
+            <ion-item>
+              <ion-label stacked>Firstname</ion-label>
+              <ion-input type="text" [(ngModel)]="fname" class="borderbottomprimary" name="firstname" required class="normaltext"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Lastname</ion-label>
+              <ion-input type="text" [(ngModel)]="lname" class="borderbottomprimary" name="lastname" required class="normaltext"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Phone</ion-label>
+              <ion-input type="tel" [(ngModel)]="pho" name="phone" required class="borderbottomprimary" class="normaltext"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Password</ion-label>
+              <ion-input type="password" [(ngModel)]="pass" class="borderbottomprimary" name="password" required class="normaltex"></ion-input>
+            </ion-item>
+            <div class="margintop">
+              <button ion-button (click)="firstBack()" type="button" class="blackbtn left"><i class="fa fa-arrow-left fa-fw half-marginright"></i>Back</button>
+              <button ion-button (click)="onUpdate()" type="submit" class="marginright right"><i class="fa fa-paper-plane fa-fw half-marginright"></i>Update</button>
+            </div>
+          </form>
+        </div>
+      </ion-item-group>
+    </div>
+  </ion-content>
+  

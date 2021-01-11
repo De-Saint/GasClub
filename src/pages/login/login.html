@@ -1,0 +1,36 @@
+<ion-header no-border >
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>
+       Login
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+<ion-content padding class="splashImage" >
+    <ion-card class="largemargintop" id="gred">
+      <ion-card-header>
+        <i class="fa fa-fw fa-lock"></i> GasClub
+      </ion-card-header>
+      <ion-card-content>
+        <form [formGroup]="login">
+          <ion-list>
+            <ion-item>
+              <ion-label stacked>Email</ion-label>
+              <ion-input type="text" formControlName="txt_email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Password</ion-label>
+              <ion-input type="password" formControlName="txt_password"></ion-input>
+            </ion-item>
+          </ion-list>
+          <button ion-button block round (click)="loginForm(login)" type="submit" class="margintop bluebtn" [disabled]="!login.valid">Login</button>
+          <div class="textleft normaltext paddingtop margintop" ion-text color="primary" (click)="ResetPassword()">Forgot Password?</div>
+          <div class="margintop mediumtext textleft">New User?</div>
+          <button ion-button outline block round outline class="" (click)="Register()">Signup</button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+    
+  </ion-content>

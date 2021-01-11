@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Customers</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionCancel)="onCancel($event)" [showCancelButton]="true" (ionClear)="onClear($event)"
+  (ionInput)="searchUser()" class="wide"></ion-searchbar>
+      <ion-list> 
+          <ion-item *ngFor="let user of users" (click)="goToDetails(user.userid, user.lastname, user.phone)">
+            <i class="fa fa-user-circle slighly-largetext marginright"></i>
+              {{user.lastname}}, {{user.firstname}}
+            <ion-note item-end class="blacktext">
+                {{user.status}}
+            </ion-note>
+      </ion-item>
+    </ion-list>
+    <div class="marginleft paddingleft marginright paddingright marginbottom margintop" *ngIf="nouser === 'nouser'">
+        No User
+      </div>
+</ion-content>

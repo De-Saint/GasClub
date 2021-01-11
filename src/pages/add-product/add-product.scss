@@ -1,0 +1,15 @@
+page-add-product {
+    .resize{
+        height: 14em;
+        width: 10em;
+    }
+    #file-input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: 999;
+}
+}

@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Order Details</ion-title>
+  
+  <ion-buttons end>
+    <button ion-button icon-only (click)="DeleteOrder()" *ngIf="order?.status === 'Delivered' ||  order?.status === 'Cancelled'">
+    <ion-icon name="trash"></ion-icon>
+      </button>
+  </ion-buttons>
+</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div>
+    <div text-justify class="normaltext half-padding">
+      <ion-item>
+        <div class="desc">Customer Name</div>
+        <span ion-text color="primary">{{order?.CustomerName}}</span>
+      </ion-item>
+      <ion-item>
+        <div class="desc">Customer Phone</div>
+        <span ion-text color="primary">{{order?.CustomerPhone}}</span>
+      </ion-item>
+    </div>
+    <ion-item-group>
+      <ion-item-divider class="normaltext" color="primary">Order Details</ion-item-divider>
+      <div text-justify class="normaltext lineup half-padding">
+        <ion-item>
+          <div class="desc">Delivery Location</div>
+          <span ion-text color="primary" class="wrap">{{order?.deliveryaddress}}</span>
+        </ion-item>
+        <ion-item>
+          <div class="desc wrap">Order Number</div>
+          <span ion-text color="primary">{{order?.ordernumber}}</span>
+        </ion-item>
+        <ion-item>
+          <div class="desc">Delivery Status</div>
+          <span ion-text color="primary">{{order?.status}}</span>
+        </ion-item>
+        <ion-item>
+          <div class="desc">Delivery Note</div>
+          <span ion-text color="primary">{{order?.substatus}} by GasClub</span>
+        </ion-item>
+        <ion-item>
+            <div class="desc">Booked Date</div>
+            <span ion-text color="primary">{{order?.bookeddate}}</span>
+          </ion-item>
+          <ion-item>
+            <div class="desc">Booked Time</div>
+            <span ion-text color="primary">{{order?.bookedtime}}</span>
+          </ion-item>
+        <ion-item>
+          <div class="desc">Delivery Date</div>
+          <span ion-text color="primary" *ngIf="order?.deliverydate !== 'null'">{{order?.deliverydate}}</span>
+        </ion-item>
+        <ion-item>
+          <div class="desc">Delivery Time</div>
+          <span ion-text color="primary" *ngIf="order?.deliverytime !== 'null'">{{order?.deliverytime}}</span>
+        </ion-item>
+       
+      </div>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider class="normaltext" color="primary">Products Details</ion-item-divider>
+      <ion-item *ngFor="let product of products">
+        <ion-avatar item-start *ngIf="product.product_categoryid === '7'">
+          <img src="assets/img/Regulator With Meter.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="product.product_categoryid === '6'">
+          <img src="assets/img/Burner.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="product.product_categoryid === '5'">
+          <img src="assets/img/Lighter Empty.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="product.product_categoryid === '4'">
+          <img src="assets/img/clip.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="product.product_categoryid === '3'">
+          <img src="assets/img/Hose.jpg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="product.product_categoryid === '2'">
+          <img src="assets/img/refill.jpeg">
+        </ion-avatar>
+        <ion-avatar item-start *ngIf="product.product_categoryid === '1'">
+          <img src="assets/img/emtpy.jpeg">
+        </ion-avatar>
+        <h2>{{product.name}}</h2>
+        <p class="mini-margintop">{{product.properties}}</p>
+        <p class="mini-margintop">Quantity: {{product.Quantity}}</p>
+        <p class="mini-margintop">Price: {{product.price}}</p>
+        <ion-note item-end class="blacktext">{{product.Amount  | currency: 'NGN': '1.2-2'}}</ion-note>
+      </ion-item>
+    </ion-item-group>
+    <ion-item>
+        <div class="desc">Delivery Fees</div>
+        <span ion-text color="primary">{{order?.deliveryfee}}</span>
+      </ion-item>
+    <ion-item>
+        <div class="desc">Total Amount</div>
+        <span ion-text color="primary">{{order?.amount | currency: 'NGN': '1.2-2'}}</span>
+      </ion-item>
+    <div text-justify class="normaltext center lineup half-padding lightbordertop">
+      <button ion-button round medium class="center" (click)="CancelOrder()" *ngIf="order?.substatus === 'Pending Confirmation'">Cancel Order</button>
+      <button ion-button round medium class="center" (click)="AcceptOrder(order?.CustomerID)" *ngIf="order?.substatus === 'Pending Confirmation'">Accept Order</button>
+      <button ion-button round medium class="center" (click)="ConfirmOrder(order?.CustomerID)" *ngIf="order?.substatus === 'Pending Delivery'">Confirm Payment</button>
+    </div>
+  </div>
+</ion-content>

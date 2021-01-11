@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>
+      Contact Us
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-header>
+            <i class="fa fa-map-marker half-marginright" ></i><span class="bold">Office Address</span>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="normaltext half-marginleft">Ground Floor, Brasas' R Plaza, Admiralty Way, Lekki Phase 1, Lagos, Nigeria. </div>
+        </ion-card-content>
+      </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+        <i class="fa fa-calendar-check-o half-marginright" ></i><span class="bold">Working Hours</span>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="normaltext half-marginleft">8am - 5pm</div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+        <i class="fa fa-calendar half-marginright" ></i><span class="bold">Working Days</span>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="normaltext half-marginleft">Monday - Saturday</div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+        <i class="fa fa-phone half-marginright"></i><span class="bold">Call</span>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="left normaltext half-marginleft bluebtn miniwidedrop mini-padding half-marginbottom" (click)="Call('07061684414')">07061684414</div>
+      <div class="right normaltext half-marginleft bluebtn miniwidedrop mini-padding half-marginbottom" (click)="Call('09027777507')">09027777507</div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+        <i class="fa fa-exchange half-marginright"></i><span class="bold">Bank Transfer</span>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="normaltext half-marginleft left">Account Number</div>
+      <div class="normaltext half-marginleft right">1014995850</div>
+      <div style="clear:both"></div>
+      <div class="normaltext half-marginleft left">Account Name</div>
+      <div class="normaltext half-marginleft right">LOSETA</div>
+      <div style="clear:both"></div>
+      <div class="normaltext half-marginleft left">Bank Name</div>
+      <div class="normaltext half-marginleft right">Zenith Bank</div>
+      <div style="clear:both"></div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+       <i class="fa fa-envelope half-marginright bold" ></i><span class="bold">Message</span>
+      </ion-card-header>
+      <ion-card-content>
+          <button ion-button round (click)="SendMessage()"  class="margintop bluebtn half-marginleft" >Send Us a Message</button>
+      </ion-card-content>
+    </ion-card>
+  
+</ion-content>

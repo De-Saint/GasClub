@@ -1,0 +1,13 @@
+.cardheight {
+    height: 550px !important;
+    overflow-y: auto;
+}
+.profiles{
+    display: inline-block;
+    vertical-align: top;
+    width: 49%;
+    margin-bottom: 2em;
+}
+.profiles:nth-child(even) {
+  text-align: right;
+}
